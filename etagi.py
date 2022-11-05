@@ -65,9 +65,6 @@ try:
             break
         else: result = True
         
-
-    
-
 finally:
     if result == True:
         print("Тест пройден")

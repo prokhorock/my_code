@@ -40,7 +40,6 @@ try:
         element = browser.find_element(By.CSS_SELECTOR, "div .templates-object-card__body__wrapper")
         for element in elements:
             element.click()
-            url = browser.current_url
             "return window.getComputedStyle(document.querySelector('span.eypL8'),':after')"
             price = element.find_element(By.CSS_SELECTOR, 'span.eypL8').text.replace(" ", "")
             prices.append(int(price))

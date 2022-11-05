@@ -66,11 +66,12 @@ try:
         else: result = True
         
 
+    
+
+finally:
     if result == True:
         print("Тест пройден")
     else: print("Тест провален")
-
-finally:
     print("Цены с проверенных объявлений", prices)
     time.sleep(5)
     browser.quit()

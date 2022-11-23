@@ -9,14 +9,6 @@ import allure
 from allure_commons.types import AttachmentType
 
 
-#chrome_options = webdriver.ChromeOptions()
-#chrome_options.add_argument('log-level=3')
-#browser = webdriver.Chrome(chrome_options = chrome_options) 
-#browser.implicitly_wait(10)
-#browser.set_window_position(0, 0)
-#browser.set_window_size(1920, 1080)
-#link = "https://stroylandiya.ru/"
-#browser.get(link)
 datetime.datetime.utcnow()
 date = datetime.datetime(2015, 2, 18, 4, 53, 28)
 

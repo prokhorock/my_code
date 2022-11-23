@@ -226,8 +226,8 @@ class test_basket(unittest.TestCase):
         except NoSuchElementException:
             if NoSuchElementException:
                 quantity = None
-        with allure.step('Делаем скриншот'):
-                allure.attach(self.browser.get_screenshot_as_png(), name = 'productDay', attachment_type=AttachmentType.PNG)
+        with allure.step('Данные страницы'):
+                allure.attach(self.browser.get_screenshot_as_png(), name = 'Скрин', attachment_type=AttachmentType.PNG)
                 allure.attach(f'Наименование товара {name_product}\nЦена товара - {price}\nКоличество - {quantity}', name = 'Данные о товаре', attachment_type=AttachmentType.TEXT)
         self.assertIsNotNone(name_product, msg=f'Название товара отсутсвует {date}')
         self.assertIsNotNone(price, msg=f'Цена товара отсутсвует {date}')

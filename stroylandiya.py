@@ -114,10 +114,9 @@ class catalog(unittest.TestCase):
         subcategory.click()
         finally_subcategory_name = self.browser.find_element(By.CSS_SELECTOR, 'h1#pagetitle').text
         total_products = self.browser.find_element(By.CSS_SELECTOR, 'div[class="fb-catalog-listing-page__products-total"]').text
-        with allure.step('Делаем скриншот'):
-                allure.attach(self.browser.get_screenshot_as_png(), name = 'product_listing', attachment_type=AttachmentType.PNG)
-        #with allure.step('Название подкатегории'):
-                allure.attach(f'Выбранная подкатегория - {subcategory_name}, \nПодкатегория на странице выдачи - {finally_subcategory_name} \nВсего товаров {total_products}', name = 'Название подкатегории', attachment_type=AttachmentType.TEXT)
+        with allure.step('Данные со страницы'):
+                allure.attach(self.browser.get_screenshot_as_png(), name = 'Скрин', attachment_type=AttachmentType.PNG)
+                allure.attach(f'Выбранная подкатегория - {subcategory_name} \nПодкатегория на странице выдачи - {finally_subcategory_name} \nВсего товаров {total_products}', name = 'Название подкатегории', attachment_type=AttachmentType.TEXT)
         self.assertEqual(subcategory_name, finally_subcategory_name)
         
 
@@ -135,10 +134,9 @@ class catalog(unittest.TestCase):
         filtr.click()
         time.sleep(2)
         total_products_after = self.browser.find_element(By.CSS_SELECTOR, 'div#listing-count-elem-main').text
-        with allure.step('Делаем скриншот'):
-                allure.attach(self.browser.get_screenshot_as_png(), name = 'productDay', attachment_type=AttachmentType.PNG)
-        print('Выбран фильтр "В наличии"')
-        print(f'Товаров до применения фильтра {total_products}, \nТоваров после фильтра {total_products_after}')
+        with allure.step('Данные со страницы'):
+                allure.attach(self.browser.get_screenshot_as_png(), name = 'Скрин', attachment_type=AttachmentType.PNG)
+                allure.attach(f'Выбран фильтр "В наличии"\nТоваров до применения фильтра {total_products},\nТоваров после фильтра {total_products_after}', name = 'Выбор фильтра', attachment_type=AttachmentType.TEXT)
         self.assertNotEqual(total_products, total_products_after)
 
 class test_basket(unittest.TestCase):
@@ -173,8 +171,6 @@ class test_basket(unittest.TestCase):
         time.sleep(2)
         self.browser.find_element(By.CSS_SELECTOR, 'div[class="dcol-0 btn-to-basket--full-width"] button[class="dc-btn -primary -hover p_product_shoping--btn js_to_cart js_to_cart--detail btn-to-basket--full-width"]').click()
         time.sleep(2)
-        with allure.step('Делаем скриншот'):
-                allure.attach(self.browser.get_screenshot_as_png(), name = 'productDay', attachment_type=AttachmentType.PNG)
         try:
             name_product = self.browser.find_element(By.CSS_SELECTOR, '.dc-row h1[class="dcol-8"]').text
         except NoSuchElementException:
@@ -190,7 +186,9 @@ class test_basket(unittest.TestCase):
         except NoSuchElementException:
             if NoSuchElementException:
                 quantity = None
-        print(f'Наименование товара {name_product}\nЦена товара - {price}\nКоличество - {quantity}')
+        with allure.step('Данные страницы'):
+                allure.attach(self.browser.get_screenshot_as_png(), name = 'productDay', attachment_type=AttachmentType.PNG)
+                allure.attach(f'Наименование товара {name_product}\nЦена товара - {price}\nКоличество - {quantity}', name = 'Данные о товаре', attachment_type=AttachmentType.TEXT)
         self.assertIsNotNone(name_product, msg=f'Название товара отсутсвует {date}')
         self.assertIsNotNone(price, msg=f'Цена товара отсутсвует {date}')
         self.assertIsNotNone(quantity, msg=f'Количество товара отсутствует {date}')
@@ -213,8 +211,6 @@ class test_basket(unittest.TestCase):
         time.sleep(2)
         self.browser.find_element(By.CSS_SELECTOR, 'div[class="dcol-0 btn-to-basket--full-width"] button[class="dc-btn -primary -hover p_product_shoping--btn js_to_cart js_to_cart--detail btn-to-basket--full-width"]').click()
         time.sleep(2)
-        with allure.step('Делаем скриншот'):
-                allure.attach(self.browser.get_screenshot_as_png(), name = 'productDay', attachment_type=AttachmentType.PNG)
         try:
             name_product = self.browser.find_element(By.CSS_SELECTOR, '.dc-row h1[class="dcol-8"]').text
         except NoSuchElementException:
@@ -230,7 +226,9 @@ class test_basket(unittest.TestCase):
         except NoSuchElementException:
             if NoSuchElementException:
                 quantity = None
-        print(f'Наименование товара {name_product}\nЦена товара - {price}\nКоличество - {quantity}')
+        with allure.step('Делаем скриншот'):
+                allure.attach(self.browser.get_screenshot_as_png(), name = 'productDay', attachment_type=AttachmentType.PNG)
+                allure.attach(f'Наименование товара {name_product}\nЦена товара - {price}\nКоличество - {quantity}', name = 'Данные о товаре', attachment_type=AttachmentType.TEXT)
         self.assertIsNotNone(name_product, msg=f'Название товара отсутсвует {date}')
         self.assertIsNotNone(price, msg=f'Цена товара отсутсвует {date}')
         self.assertIsNotNone(quantity, msg=f'Количество товара отсутствует {date}')
